@@ -1,0 +1,63 @@
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white rounded">
+                    <div class="panel-heading">
+                        <h3 class="pt-3 font-weight-bold">Sign Up</h3>
+                    </div>
+                    <div class="panel-body p-3">
+                        <form [formGroup]="signUpForm">
+
+                            <div class="form-group p-3">
+                                <div class="input-field" [class.error]="signUpForm.controls['username'].dirty && signUpForm.hasError('required', 'username')">
+                                    <span class="fa fa-user p-2"></span>
+                                    <input type="text" formControlName="username" placeholder="Enter Username">
+                                </div>
+                                <small *ngIf="signUpForm.controls['username'].dirty && signUpForm.hasError('required', 'username')" class="text-danger">*Username Is Required!</small>
+                            </div>
+
+                            <div class="form-group p-3">
+                                <div class="input-field" [class.error]="signUpForm.controls['fullname'].dirty && signUpForm.hasError('required', 'fullname')">
+                                    <span class="fa fa-id-badge p-2"></span>
+                                    <input type="text" formControlName="fullname" placeholder="Enter Full Name">
+                                </div>
+                                <small *ngIf="signUpForm.controls['fullname'].dirty && signUpForm.hasError('required', 'fullname')" class="text-danger">*Fullname Is Required!</small>
+                            </div>
+
+                            <div class="form-group p-3">
+                                <div class="input-field" [class.error]="signUpForm.controls['email'].dirty && signUpForm.hasError('required', 'email')">
+                                    <span class="fa fa-envelope p-2"></span>
+                                    <input type="email" formControlName="email" placeholder="Enter Email Address">
+                                </div>
+                                <small *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required', 'email')" class="text-danger">*Email Is Required!</small>
+                            </div>
+
+                            <div class="form-group p-3">
+                                <div class="input-field" [class.error]="signUpForm.controls['tel'].dirty && signUpForm.hasError('required', 'tel')">
+                                    <span class="fa fa-phone p-2"></span>
+                                    <input type="tel" formControlName="tel" placeholder="Enter Phone Number">
+                                </div>
+                                <small *ngIf="signUpForm.controls['tel'].dirty && signUpForm.hasError('required', 'tel')" class="text-danger">*Phone Number Is Required!</small>
+                            </div>
+                            
+                            <div class="form-group p-3">
+                                <div class="input-field" [class.error]="signUpForm.controls['password'].dirty && signUpForm.hasError('required', 'password')">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input [type]="type" formControlName="password" placeholder="Enter Password">
+                                    <span (click)="hidePaddword()" class="fa {{eyeIcon}}"></span>
+                                </div>
+                                <small *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required', 'password')" class="text-danger">*Password Is Required!</small>
+                            </div>
+
+                            <button (click)="OnSubmit()" class="btn btn-primary btn-block mt-4 w-100">Sign Up</button>
+
+                            <div class="text-center mt-4 text-muted mb-4">Already Have An Account? <a id="forget" routerLink="/login">Login</a></div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
