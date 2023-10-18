@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 import { Login } from 'src/app/Models/Login.model';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit{
   auth:AuthService = inject(AuthService);
   router:Router = inject(Router);
   toast: NgToastService = inject(NgToastService)
+  spinner: NgxSpinnerService = inject(NgxSpinnerService)
   
 
   constructor(private fb: FormBuilder){}
@@ -40,14 +42,19 @@ export class LoginComponent implements OnInit{
 
   OnSubmit() {
     if(this.loginForm.valid){
+      this.spinner.show()
       let login: Login = new Login(this.loginForm.value.username, this.loginForm.value.password)
       this.auth.login(login).subscribe({
         next:(res:any)=>{
           this.loginForm.reset();
+          this.auth.storeToken(res.token);
+          this.toast.success({detail:"Success",summary:'Loggedin Successfully!', duration:5000});
+          this.spinner.hide()
           this.router.navigate(["dashboard"]);
         },
         error:(err:any)=>{
           console.log(err)
+          this.spinner.hide()
           this.toast.error({detail:"ERROR",summary:'Incorrect Username or Password!', duration:5000});
         }
       });

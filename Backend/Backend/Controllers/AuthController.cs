@@ -7,6 +7,7 @@ using System;
 using System.Text;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Backend.Controllers
 {
@@ -46,7 +47,7 @@ namespace Backend.Controllers
             if (await _dbContext.Users.AnyAsync(x => x.email == userObj.email)) return BadRequest(new { Message = "Email Already Exists!" });
 
             userObj.role = "user";
-            userObj.token = CreateJwtToken(userObj);
+            userObj.token = "";
 
             await _dbContext.Users.AddAsync(userObj);
             await _dbContext.SaveChangesAsync();
@@ -72,11 +73,18 @@ namespace Backend.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = identity,
-                Expires = DateTime.Now.AddMinutes(50),
+                Expires = DateTime.Now.AddHours(1),
                 SigningCredentials = credentials
             };
             var token = jwtTokenHandler.CreateToken(tokenDescriptor);
             return jwtTokenHandler.WriteToken(token);
+        }
+
+        [Authorize]
+        [HttpGet("Users")]
+        public async Task<ActionResult<apiUsers>> GetAllUsers()
+        {
+            return Ok(await _dbContext.Users.ToListAsync());
         }
     }
 }

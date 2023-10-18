@@ -3549,11 +3549,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Muhammad Saad\\Desktop\\VS\\Backend\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\Muhammad Saad\\Desktop\\VS\\Angular and .net Practice\\Backend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\Muhammad Saad\\Desktop\\VS\\Backend\\Backend\\Backend.csproj",
+      "projectPath": "C:\\Users\\Muhammad Saad\\Desktop\\VS\\Angular and .net Practice\\Backend\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\Muhammad Saad\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Muhammad Saad\\Desktop\\VS\\Backend\\Backend\\obj\\",
+      "outputPath": "C:\\Users\\Muhammad Saad\\Desktop\\VS\\Angular and .net Practice\\Backend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Muhammad Saad\\AppData\\Roaming\\NuGet\\NuGet.Config",

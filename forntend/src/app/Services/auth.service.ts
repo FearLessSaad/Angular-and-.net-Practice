@@ -19,4 +19,20 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}Authenticate`,login)
   }
   
+  storeToken(token: string){
+    localStorage.setItem('token', token)
+  }
+
+  getToken(): any {
+    return localStorage.getItem('token')
+  }
+
+  isLogedIn(): boolean {
+    return !!localStorage.getItem('token')
+  }
+
+  signOut(){
+    localStorage.removeItem('token');
+  }
+
 }
