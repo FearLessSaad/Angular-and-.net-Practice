@@ -82,8 +82,7 @@ namespace Backend.Controllers
 
         [Authorize]
         [HttpGet("Users")]
-        public async Task<ActionResult<apiUsers>> GetAllUsers()
-        {
+        public async Task<ActionResult<apiUsers>> GetAllUsers() { 
             return Ok(await _dbContext.Users.ToListAsync());
         }
     }

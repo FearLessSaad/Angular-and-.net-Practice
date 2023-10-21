@@ -1,6 +1,7 @@
 <p>dashboard works!</p>
 <app-btn-sign-out></app-btn-sign-out>
 
+<h1>Name: {{fullname}}</h1>
 
 <div class="container">
     <h1>Users</h1>
@@ -16,15 +17,20 @@
                 <th>Role</th>
             </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let user of users">
-                <th>{{user.id}}</th>
-                <th>{{user.full_name}}</th>
-                <th>{{user.user_name}}</th>
-                <th>{{user.email}}</th>
-                <th>{{user.role}}</th>
-                <th>{{user.role}}</th>
-            </tr>
-        </tbody>
+        <ng-container *ngIf="role == 'admin';else error">
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <th>{{user.id}}</th>
+                    <th>{{user.full_name}}</th>
+                    <th>{{user.user_name}}</th>
+                    <th>{{user.email}}</th>
+                    <th>{{user.role}}</th>
+                    <th>{{user.role}}</th>
+                </tr>
+            </tbody>
+        </ng-container>
+        <ng-template #error>
+            <h1>You Have No Permissions To View Users!</h1>
+        </ng-template>
     </table>
 </div>

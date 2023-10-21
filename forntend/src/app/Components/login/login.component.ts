@@ -6,6 +6,7 @@ import { Login } from 'src/app/Models/Login.model';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { UserStoreService } from 'src/app/Services/user-store.service';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit{
   router:Router = inject(Router);
   toast: NgToastService = inject(NgToastService)
   spinner: NgxSpinnerService = inject(NgxSpinnerService)
+  userStore: UserStoreService = inject(UserStoreService)
   
 
   constructor(private fb: FormBuilder){}
@@ -48,6 +50,9 @@ export class LoginComponent implements OnInit{
         next:(res:any)=>{
           this.loginForm.reset();
           this.auth.storeToken(res.token);
+          let data = this.auth.decodeToken();
+          this.userStore.setFullNameForStore(data.unique_name);
+          this.userStore.setRoleForStore(data.role);
           this.toast.success({detail:"Success",summary:'Loggedin Successfully!', duration:5000});
           this.spinner.hide()
           this.router.navigate(["dashboard"]);
